@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my app
+spec:
+  destination:
+    name: ''
+    namespace: myapp
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: dev
+    repoURL: 'git@github.com:Darkflib/k8s-argo.git'
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
